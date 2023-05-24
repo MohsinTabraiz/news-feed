@@ -9,3 +9,4 @@
     composer install --ignore-platform-reqs
 3. ./vendor/bin/sail up -d
 4. ./vendor/bin/sail yarn
+5. ./vendor/bin/sail artisan migrate:fresh 
