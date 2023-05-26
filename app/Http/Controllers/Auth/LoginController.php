@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -12,6 +12,10 @@ use App\Http\Traits\TokenTrait;
 class LoginController extends Controller
 {
     use HttpResponsesTrait, TokenTrait;
+
+    public function notLoggedInError(){
+        return $this->error('','Please SignIn/SignUp first', 401);
+    }
 
     public function login(LoginRequest $request){
 
