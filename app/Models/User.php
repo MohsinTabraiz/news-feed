@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Source;
+use App\Models\Category;
+use App\Models\Author;
 
 class User extends Authenticatable
 {
@@ -43,4 +46,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function sources()
+    {
+        return $this->belongsToMany(Source::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class);
+    }
 }
