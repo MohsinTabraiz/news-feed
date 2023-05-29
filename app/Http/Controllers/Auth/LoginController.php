@@ -13,14 +13,15 @@ class LoginController extends Controller
 {
     use HttpResponsesTrait, TokenTrait;
 
-    public function notLoggedInError(){
-        return $this->error('','Please SignIn/SignUp first', 401);
+    public function notLoggedInError()
+    {
+        return $this->error('', 'Please SignIn/SignUp first', 401);
     }
 
-    public function login(LoginRequest $request){
-
-        if(!Auth::attempt($request->only(['email', 'password']))){
-            return $this->error('','Credentials do not match', 401);
+    public function login(LoginRequest $request)
+    {
+        if (!Auth::attempt($request->only(['email', 'password']))) {
+            return $this->error(['Credentials do not match'], '', 401);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -29,5 +30,5 @@ class LoginController extends Controller
             'user' => $user,
             'token' => $this->generateToken($user),
         ]);
-    }    
+    }
 }

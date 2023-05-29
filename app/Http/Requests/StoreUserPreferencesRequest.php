@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Source;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class LoginRequest extends FormRequest
+class StoreUserPreferencesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +27,12 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string']
+            'authors' => ['array'],
+            'authors.*' => ['exists:' . Author::class . ',id'],
+            'categories' => ['array'],
+            'categories.*' => ['exists:' . Category::class . ',id'],
+            'sources' => ['array'],
+            'sources.*' => ['exists:' . Source::class . ',id'],
         ];
     }
 

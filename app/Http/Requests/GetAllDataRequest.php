@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class LoginRequest extends FormRequest
+class GetAllDataRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,13 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string']
+            'author_id' => ['exists:authors,id'],
+            'category_id' => ['exists:categories,id'],
+            'source_id' => ['exists:sources,id'],
+            'start_date' => ['string'],
+            'end_date' => ['string'],
+            'keyword' => ['string'],
+            'limit' => ['integer']
         ];
     }
 

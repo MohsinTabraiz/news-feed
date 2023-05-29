@@ -5,10 +5,12 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Contracts\Validation\Validator;
+use App\Http\Traits\HttpResponsesTrait;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RegisterRequest extends FormRequest
 {
+    use HttpResponsesTrait;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -34,6 +36,6 @@ class RegisterRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json(['errors' => $validator->errors()], 422));
+        throw new HttpResponseException($this->error($validator->errors(), '', 422));
     }
 }
