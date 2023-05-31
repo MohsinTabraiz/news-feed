@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('app:fetch-news-articles-from-apis-command')->twiceDaily(0, 12);
     }
 
     /**
@@ -21,6 +21,10 @@ class Kernel extends ConsoleKernel
     protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
+
+        $this->load([
+            \App\Console\Commands\FetchNewsArticlesFromAPIsCommand::class,
+        ]);    
 
         require base_path('routes/console.php');
     }

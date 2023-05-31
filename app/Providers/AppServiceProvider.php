@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind('App\Helpers\Http\Contracts\ClientInterface', 'App\Helpers\Http\Clients\Guzzle');
-     
+       
         // Services
         $this->app->bind('App\Services\Contracts\IDataAggregationService', 'App\Services\DataAggregationService');
 
