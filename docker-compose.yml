@@ -99,6 +99,18 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
+    composer:
+        image: composer
+        working_dir: /var/www/html
+        volumes:
+            - .:/var/www/html
+        entrypoint: composer
+    npm:
+        image: node
+        working_dir: /var/www/html
+        volumes:
+            - .:/var/www/html
+        entrypoint: npm
 networks:
     sail:
         driver: bridge
