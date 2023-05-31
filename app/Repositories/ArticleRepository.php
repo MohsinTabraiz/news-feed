@@ -45,7 +45,7 @@ class ArticleRepository implements IDataRepository
                 $endDate = date('Y-m-d H:i:s', strtotime($searchQuery['end_date']));
                 return $query->whereDate('published_at', '<', $endDate);
             })
-            ->paginate(isset($searchQuery['limit']) ? $searchQuery['limit'] : 5);
+            ->paginate(isset($searchQuery['limit']) ? $searchQuery['limit'] : limit());
     }
 
     public function getPreferredItemsByUser($userId, $limit = null)
