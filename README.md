@@ -34,3 +34,4 @@
 - ElasticSearch, as instead of making direct calls to the external APIs, I cached the data fetched from the APIs into databases, just to show case data handling, manipulation, use of cron jobs etc... So I was really hoping to implement ElasticSearch to make the searching of the data even easier. 
 - More better error handling. I could not implement proper error handling, exceptions with proper messages and details being thrown and handled. As I feel they are one of the most important aspects.
 - More Unit and Feature tests
+- More types restrictions using Static Analysis tools like PHPStan
